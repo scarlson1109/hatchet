@@ -558,7 +558,7 @@
           title: _('Go Hyper?'),
           scenes: {
             start: {
-              text: [_('turning hyper mode speeds up the game to x2 speed. do you want to do that?')],
+              text: [_('turning hyper mode speeds up the game to x100 speed. do you want to do that?')],
               buttons: {
                 'yes': {
                   text: _('yes'),
@@ -580,12 +580,38 @@
 
     triggerHyperMode: function() {
       Engine.options.doubleTime = !Engine.options.doubleTime;
-      if(Engine.options.doubleTime)
+      if(Engine.options.doubleTime) {
         $('.hyper').text(_('classic.'));
-      else
+        Engine.gameSpeed = 100; // Set game speed to 100x
+      } else {
         $('.hyper').text(_('hyper.'));
+        Engine.gameSpeed = 1; // Reset game speed to normal
+      }
 
       $SM.set('config.hyperMode', Engine.options.doubleTime, false);
+      
+      // Update event processing speed
+      Events.updateFrequency = 100 / Engine.gameSpeed;
+      
+      // Update UI update frequency
+      clearInterval(Engine.uiUpdateTimer);
+      Engine.uiUpdateTimer = setInterval(Engine.updateUI, 1000 / Engine.gameSpeed);
+    },
+
+    updateUI: function() {
+      // Call update methods for various UI elements
+      if (Room.updateButtons) Room.updateButtons();
+      if (Outside.updateVillage) Outside.updateVillage();
+      // Add other UI update calls as needed
+    },
+
+    // Modify event handling to respect game speed
+    handleEvent: function(event) {
+      if (event.cooldown) {
+        event.cooldown = event.cooldown / Engine.gameSpeed;
+      }
+      // Process the event as usual
+      // ...
     },
 
     // Gets a guid
@@ -832,24 +858,17 @@
     },
 
     setInterval: function(callback, interval, skipDouble){
-      if( Engine.options.doubleTime && !skipDouble ){
-        Engine.log('Double time, cutting interval in half');
-        interval /= 2;
+      if(Engine.options.doubleTime && !skipDouble){
+        interval /= Engine.gameSpeed;
       }
-
       return setInterval(callback, interval);
-
     },
 
     setTimeout: function(callback, timeout, skipDouble){
-
-      if( Engine.options.doubleTime && !skipDouble ){
-        Engine.log('Double time, cutting timeout in half');
-        timeout /= 2;
+      if(Engine.options.doubleTime && !skipDouble){
+        timeout /= Engine.gameSpeed;
       }
-
       return setTimeout(callback, timeout);
-
     }
   };
 
@@ -940,3 +959,4 @@ $.Dispatch = function( id ) {
 $(function() {
   Engine.init();
 });
+
