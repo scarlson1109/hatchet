@@ -1,6 +1,6 @@
 # A Dark Room - Game Documentation
 
-Welcome to the comprehensive documentation for A Dark Room. This wiki covers both technical implementation details and gameplay mechanics.
+Welcome to the comprehensive documentation for A Dark Room. This wiki covers technical implementation details, gameplay mechanics, and narrative elements.
 
 ## Quick Start Guides
 
@@ -15,6 +15,22 @@ Welcome to the comprehensive documentation for A Dark Room. This wiki covers bot
 - [State Management](core/state.md#technical-implementation)
 - [Translation System](technical/translation.md#core-mechanics)
 - [Save System](technical/save-system.md#technical-features)
+
+## Narrative Elements
+
+### Storylines
+- [Main Path](narrative/storylines/main_path.md) - Primary game progression and story
+- [Alternate Paths](narrative/storylines/alternate_paths.md) - Optional story branches and choices
+- [Hidden Events](narrative/storylines/hidden_events.md) - Secret encounters and discoveries
+
+### Story Elements
+- [Location Stories](narrative/story_elements/location_stories.md) - Location-based narratives and progression
+- [Character Arcs](narrative/story_elements/character_arcs.md) - Character development and interactions
+- [World Evolution](narrative/story_elements/world_evolution.md) - World state changes and consequences
+
+### Mechanics Narrative
+- [Resource Progression](narrative/mechanics_narrative/resource_progression.md) - Resource gathering and evolution
+- [Technology Progression](narrative/mechanics_narrative/technology_progression.md) - Technology advancement and discoveries
 
 ## Core Systems
 
