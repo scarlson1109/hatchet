@@ -16,6 +16,13 @@ Welcome to the comprehensive documentation for A Dark Room. This wiki covers tec
 - [Translation System](technical/translation.md#core-mechanics)
 - [Save System](technical/save-system.md#technical-features)
 
+## Story Documentation
+
+### Complete Narrative
+- [Story Requirements](story/prompt.md) - Writing guidelines and style requirements
+- [Game Timeline](story/timeline.md) - Chronological progression of events
+- [Complete Narrative](story/README.md) - The full story of A Dark Room
+
 ## Narrative Elements
 
 ### Storylines
